@@ -1,5 +1,5 @@
 import { Layout, Menu } from "antd";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 
 const items = [
@@ -8,16 +8,22 @@ const items = [
   //   UploadOutlined,
   //   UserOutlined,
   {
-    key: "1",
-    label: "Dashboard",
+    key: "Dashboard",
+    label: <NavLink to="/admin/dashboard">Dashboard</NavLink>,
   },
   {
-    key: "2",
-    label: "Profile",
-  },
-  {
-    key: "3",
+    key: "User Management",
     label: "User Management",
+    children: [
+      {
+        key: "Create-admin",
+        label: <NavLink to="/admin/create-admin">Create Admin</NavLink>,
+      },
+      {
+        key: "Create-student",
+        label: "Create Student",
+      },
+    ],
   },
 ];
 // .map((icon, index) => ({
