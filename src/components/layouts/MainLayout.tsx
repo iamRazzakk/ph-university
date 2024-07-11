@@ -21,7 +21,11 @@ const items = [
       },
       {
         key: "Create-student",
-        label: "Create Student",
+        label: <NavLink to="/admin/create-student">Create Student</NavLink>,
+      },
+      {
+        key: "Create-faculty",
+        label: <NavLink to="/admin/create-faculty">Create Faculty</NavLink>,
       },
     ],
   },
