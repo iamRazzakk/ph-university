@@ -1,5 +1,11 @@
-import { Layout } from "antd";
+import { Layout, Menu } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
+// import {
+//   UploadOutlined,
+//   UserOutlined,
+//   VideoCameraOutlined,
+// } from "@ant-design/icons";
+// import { createElement } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 

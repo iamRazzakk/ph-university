@@ -12,17 +12,17 @@ const UserRole = {
 };
 
 const Sidebar = () => {
-  const role = "student";
+  const role = "faculty";
   let sidebarItems;
   switch (role) {
     case UserRole.ADMIN:
-      sidebarGenaretors(adminPaths, UserRole.ADMIN);
+      sidebarItems = sidebarGenaretors(adminPaths, UserRole.ADMIN);
       break;
     case UserRole.FACULTY:
-      sidebarGenaretors(facultyPaths, UserRole.FACULTY);
+      sidebarItems = sidebarGenaretors(facultyPaths, UserRole.FACULTY);
       break;
     case UserRole.STUDENT:
-      sidebarGenaretors(studentPaths, UserRole.STUDENT);
+      sidebarItems = sidebarGenaretors(studentPaths, UserRole.STUDENT);
       break;
 
     default:

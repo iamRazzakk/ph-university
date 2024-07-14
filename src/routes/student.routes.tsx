@@ -1,7 +1,7 @@
 import OfferedCourse from "../pages/facultys/OfferedCourse";
 import StudentsDashboard from "../pages/Students/StudentsDashboard";
 
-const facultyPaths = [
+const studentPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
@@ -13,4 +13,4 @@ const facultyPaths = [
     element: <OfferedCourse />,
   },
 ];
-export default facultyPaths;
+export default studentPaths;
