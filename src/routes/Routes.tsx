@@ -1,57 +1,33 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import { About } from "../pages/About";
-import { Contact } from "../pages/Contact";
-import { Login } from "../pages/Login";
-import { Register } from "../pages/Register";
-import { AdminDashboard } from "../pages/admin/AdminDashboard";
-import { CreateStudent } from "../pages/student/CreateStudent";
-import AdminLayout from "../components/layouts/AdminLayout";
-import { CreateAdmin } from "../pages/admin/CreateAdmin";
-import { CreateFaculty } from "../pages/admin/CreateFaculty";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import { adminPaths } from "./admin.routes";
+import { routerGenaretor } from "../utils/routerGenerator";
+import facultyPaths from "./faculty.routes";
+import studentPaths from "./student.routes";
+// import { routerGenaretor(adminPaths) } from './admin.routes';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
-      {
-        path: "about",
-        element: <About />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
-      },
-    ],
   },
   {
     path: "/admin",
-    element: <AdminLayout />,
-    children: [
-      {
-        index: true,
-        element: <AdminDashboard />,
-      },
-      {
-        path: "dashboard",
-        element: <AdminDashboard />,
-      },
-      {
-        path: "create-student",
-        element: <CreateStudent />,
-      },
-      {
-        path: "create-admin",
-        element: <CreateAdmin />,
-      },
-      {
-        path: "create-faculty",
-        element: <CreateFaculty />,
-      },
-    ],
+    element: <App />,
+    children: routerGenaretor(adminPaths),
   },
-
+  {
+    path: "/faculty",
+    element: <App />,
+    children: routerGenaretor(facultyPaths),
+  },
+  {
+    path: "/student",
+    element: <App />,
+    children: routerGenaretor(studentPaths),
+  },
   {
     path: "/login",
     element: <Login />,
@@ -61,4 +37,5 @@ const router = createBrowserRouter([
     element: <Register />,
   },
 ]);
+
 export default router;
