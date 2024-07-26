@@ -4,14 +4,16 @@ import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser } from "../redux/features/auth/authSlice";
 import { varifyToken } from "../utils/varifyToken";
-
+type TData = {
+  id: string;
+  password: string;
+};
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const [login, { error }] = useLoginMutation();
-
   const dispatch = useAppDispatch();
   console.log("Error", error);
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: TData) => {
     const userInfo = {
       id: data.id,
       password: data.password,
@@ -37,4 +39,4 @@ const Login = () => {
 };
 
 export default Login;
-// 
+//
