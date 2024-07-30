@@ -4,20 +4,41 @@ import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser } from "../redux/features/auth/authSlice";
 import { varifyToken } from "../utils/varifyToken";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 const Login = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [login, { error }] = useLoginMutation();
   const dispatch = useAppDispatch();
   console.log("Error", error);
   const onSubmit = async (data) => {
-    const userInfo = {
-      id: data.id,
-      password: data.password,
-    };
-    const res = await login(userInfo).unwrap();
-    const user = varifyToken(res.data.accessToken);
-    console.log(user);
-    dispatch(setUser({ user: user, token: res.data.accessToken }));
+    const toastId = toast.loading("Logging in", {
+      duration: 2000,
+      position: "top-center",
+    });
+    try {
+      const userInfo = {
+        id: data.id,
+        password: data.password,
+      };
+      const res = await login(userInfo).unwrap();
+      const user = varifyToken(res.data.accessToken);
+      console.log(user);
+      dispatch(setUser({ user: user, token: res.data.accessToken }));
+      toast.success("Logged in", {
+        id: toastId,
+        duration: 2000,
+        position: "top-center",
+      });
+      navigate(`/${user.role}/dashboard`);
+    } catch (error) {
+      toast.error("Something is wrong", {
+        id: toastId,
+        duration: 2000,
+        position: "top-center",
+      });
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
